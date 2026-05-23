@@ -113,7 +113,14 @@ python -m http.server 8080
 
 ## 📸 Screenshots
 
-> _Add screenshots here after deployment_
+### 1. Login & Registration
+![Login and Registration Screen](img/Screenshot%20(734).png)
+
+### 2. Main Task Management Dashboard
+![Task Adding and Management](img/Screenshot%20(735).png)
+
+### 3. Actions, Analytics & Logout
+![Actions and Statistics](img/Screenshot%20(736).png)
 
 ## 🔒 Security Considerations
 
