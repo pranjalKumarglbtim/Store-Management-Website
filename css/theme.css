@@ -1,0 +1,8 @@
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-surface: #1f2937;
+    --text-main: #f9fafb;
+    --border-color: #374151;
+    --primary-color: #6366f1;
+}
+.btn-theme { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }

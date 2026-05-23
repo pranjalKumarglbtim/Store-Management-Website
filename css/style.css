@@ -1,0 +1,453 @@
+﻿/* Custom UI Animations and Theme Variable Injections */
+
+/* Task Item Animations */
+.task-item {
+    animation: slideUp 0.4s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+.task-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.98) rotate(2deg);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.drag-over {
+    border-top: 3px solid #4f46e5;
+    padding-top: 12px;
+}
+
+.task-item.completed {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+}
+
+.task-item.high-priority {
+    border-left: 4px solid #ef4444;
+}
+
+.task-item.medium-priority {
+    border-left: 4px solid #f59e0b;
+}
+
+.task-item.low-priority {
+    border-left: 4px solid #10b981;
+}
+
+/* Filter Button Animations */
+.filter-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.filter-btn:hover::before {
+    left: 100%;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(139, 92, 246, 0.15));
+    color: #4f46e5;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    border-color: #4f46e5;
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] .filter-btn.active {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.2), rgba(167, 139, 250, 0.2));
+    color: #a78bfa;
+    border-color: #a78bfa;
+}
+
+/* Micro Focus Highlight Controls */
+.task-text[contenteditable="true"]:focus {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
+    border-radius: 0.375rem;
+    padding: 0.125rem 0.25rem;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* Checkbox Animation */
+.toggle-check {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.toggle-check:checked {
+    background-color: #10b981;
+    border-color: #10b981;
+    animation: scaleUp 0.3s ease-out;
+}
+
+/* Delete Button Animation */
+.delete-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.9);
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Input Focus Effects */
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(139, 92, 246, 0.05));
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    transition: all 0.3s ease-out;
+}
+
+/* Button Animations */
+button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button[type="submit"]:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Success Animation */
+.task-success {
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Empty State Animation */
+.empty-state {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.empty-state span {
+    display: inline-block;
+    animation: bounce 2s infinite;
+}
+
+/* Progress Bar Animation */
+#activeProgress > div,
+#completionProgress > div {
+    animation: slideRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideRight {
+    from {
+        width: 0;
+    }
+}
+
+/* Confetti Animation */
+.confetti {
+    position: fixed;
+    pointer-events: none;
+}
+
+/* Auth Overlay - Force Enable All Interactions */
+#authOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+#authOverlay:not(.visible) {
+    display: none;
+}
+
+#authOverlay.visible {
+    display: flex;
+}
+
+#authCard {
+    background: #111111;
+    border: 1px solid #333;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    width: 24rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10000;
+    pointer-events: auto;
+}
+
+#authCard input,
+#authCard select {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    color: #e0e0e0;
+    font-family: monospace;
+    font-size: 0.875rem;
+    outline: none;
+    cursor: text;
+    pointer-events: auto !important;
+}
+
+#authCard input:focus,
+#authCard select:focus {
+    border-color: #818cf8;
+    outline: 2px solid rgba(129, 140, 248, 0.2);
+}
+
+#authCard button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: monospace;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+/* Pulse Effect for Stats */
+.stat-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth transitions for dark mode */
+* {
+    transition: none;
+}
+
+html, body {
+    pointer-events: auto;
+    overflow: hidden;
+}
+
+/* Prevent transition on drag */
+.task-item.dragging * {
+    transition: none;
+}
+
+/* Streak animation */
+#streakBox {
+    animation: slideUp 0.4s ease-out;
+}
+
+#streakCount {
+    font-size: 1.25em;
+}
+
+/* Sound toggle button */
+#soundToggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#soundToggle:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+#soundToggle.sound-off {
+    opacity: 0.5;
+}
+
+/* ============ NEW ANIMATIONS ============ */
+
+/* Fade In Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scale Up Animation */
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Rotation Animation */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Class-based animations */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 0.5s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+}
+
+.animate-scale-up {
+    animation: scaleUp 0.3s ease-out;
+}
+
+/* Staggered animations for task list */
+.task-item:nth-child(1) { animation-delay: 0.1s; }
+.task-item:nth-child(2) { animation-delay: 0.15s; }
+.task-item:nth-child(3) { animation-delay: 0.2s; }
+.task-item:nth-child(4) { animation-delay: 0.25s; }
+.task-item:nth-child(5) { animation-delay: 0.3s; }
+
+/* Header entry animation */
+header {
+    animation: fadeInDown 0.5s ease-out;
+}
+
+/* Sidebar entry animation */
+aside {
+    animation: fadeInLeft 0.5s ease-out;
+}
+
+/* Main content entry animation */
+main {
+    animation: fadeInRight 0.5s ease-out;
+}
+
+/* Auth modal entry animation */
+#authCard {
+    animation: scaleUp 0.3s ease-out;
+}
+
+/* Button active/hover states */
+.btn-primary {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
