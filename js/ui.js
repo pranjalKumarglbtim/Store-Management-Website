@@ -35,7 +35,7 @@
             const li = document.createElement("li");
             const priorityLabel = task.priority.padEnd(6, " ");
 
-            li.className = "flex items-center gap-2 py-1 text-xs";
+            li.className = "flex items-center gap-2 py-1 text-xs group";
             li.setAttribute("data-id", task.id);
             li.setAttribute("draggable", "true");
 

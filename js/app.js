@@ -269,15 +269,24 @@
             const li = e.target.closest("li");
             if (!li) return;
             const id = parseInt(li.getAttribute("data-id"));
-            if (e.target.dataset.action === "toggle") {
+
+            const toggleEl = e.target.closest('[data-action="toggle"]');
+            if (toggleEl) {
                 const task = this.tasks.find(t => t.id === id);
-                task.completed = !task.completed;
-                if (task.completed) this.ui.playSound("success");
-                this.syncState();
-            } else if (e.target.dataset.action === "delete") {
+                if (task) {
+                    task.completed = !task.completed;
+                    if (task.completed) this.ui.playSound("success");
+                    this.syncState();
+                }
+                return;
+            }
+
+            const deleteEl = e.target.closest('[data-action="delete"]');
+            if (deleteEl) {
                 this.tasks = this.tasks.filter(t => t.id !== id);
                 this.ui.playSound("delete");
                 this.syncState();
+                return;
             }
         });
 
